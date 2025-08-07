@@ -582,13 +582,13 @@ class DSCJobCreationTestCase(DSCJobTestCaseWithCleanUp):
         SOURCE_PATH = os.path.join(
             os.path.dirname(__file__), "../fixtures/job_archive/"
         )
-        JOB_ENRTYPOINT = "job_archive/main.py"
+        JOB_ENTRYPOINT = "job_archive/main.py"
         job = (
             Job()
             .with_infrastructure(self.default_datascience_job.with_log_id(self.LOG_ID))
             .with_runtime(
                 ScriptRuntime()
-                .with_source(SOURCE_PATH, entrypoint=JOB_ENRTYPOINT)
+                .with_source(SOURCE_PATH, entrypoint=JOB_ENTRYPOINT)
                 .with_service_conda("mlcpuv1")
             )
             .create()
@@ -600,7 +600,7 @@ class DSCJobCreationTestCase(DSCJobTestCaseWithCleanUp):
                 "environment_variables": {
                     "CONDA_ENV_SLUG": "mlcpuv1",
                     "CONDA_ENV_TYPE": "service",
-                    "JOB_RUN_ENTRYPOINT": JOB_ENRTYPOINT,
+                    "JOB_RUN_ENTRYPOINT": JOB_ENTRYPOINT,
                 },
                 # "hyperparameter_values": None,
                 "job_type": "DEFAULT",

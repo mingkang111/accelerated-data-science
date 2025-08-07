@@ -298,20 +298,20 @@ class DataScienceJobRuntimeTest(DataScienceJobPayloadTest):
         self.assert_runtime_translation(runtime, expected_env_var=expected_env_var)
 
     def test_runtime_with_zip_entrypoint(self):
-        ZIP_JOB_ENRTYPOINT = "job_archive/main.py"
+        JOB_ENTRYPOINT = "job_archive/main.py"
         DIR_SOURCE_PATH = os.path.join(
             os.path.dirname(__file__), "../../../integration/fixtures/job_archive.zip"
         )
 
         expected_env_var = {
-            ScriptRuntimeHandler.CONST_ENTRYPOINT: ZIP_JOB_ENRTYPOINT,
+            ScriptRuntimeHandler.CONST_ENTRYPOINT: JOB_ENTRYPOINT,
             CondaRuntimeHandler.CONST_CONDA_TYPE: "service",
             CondaRuntimeHandler.CONST_CONDA_SLUG: "mlcpuv1",
         }
 
         runtime = (
             ScriptRuntime()
-            .with_source(DIR_SOURCE_PATH, entrypoint=ZIP_JOB_ENRTYPOINT)
+            .with_source(DIR_SOURCE_PATH, entrypoint=JOB_ENTRYPOINT)
             .with_service_conda("mlcpuv1")
         )
         self.assert_runtime_translation(runtime, expected_env_var)
